@@ -24,8 +24,8 @@ for i in range(25):
         Type=Band
         BandIdx={i}
     ''')
-...
 ;#endregion macro
+...
 ```
 
 skin.ini (output):
