@@ -37,5 +37,12 @@ skin.ini (output):
     Parent=MeasureAudio
     Type=Band
     BandIdx=0
+
+[MeasureBand1]
+    Measure=Plugin
+    Plugin=AudioLevel
+    Parent=MeasureAudio
+    Type=Band
+    BandIdx=1
 ... (25 times as above)
 ```
