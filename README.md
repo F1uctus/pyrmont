@@ -14,7 +14,7 @@ skins from all `<filename>.pyrm` files found.
 skin.pyrm (input):
 ```
 ...
-;#region macro
+;#macro
 for i in range(25):
     print(f'''
     [MeasureBand{i}]
@@ -24,7 +24,7 @@ for i in range(25):
         Type=Band
         BandIdx={i}
     ''')
-;#endregion macro
+;#endmacro
 ...
 ```
 
