@@ -2,7 +2,7 @@
 Rainmeter skin code generator
 --> skin.pyrm
 ...
-;#region macro
+;#macro
 for i in range(25):
     print(f'''
     [MeasureBand{i}]
@@ -13,7 +13,7 @@ for i in range(25):
         BandIdx={i}
     ''')
 ...
-;#endregion macro
+;#endmacro
 --> skin.ini
 ...
 [MeasureBand0]
