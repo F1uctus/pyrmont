@@ -2,7 +2,7 @@
 Rainmeter skin code generator.
 --> skin.pyrm
 ...
-;#macro
+;macro
 for i in range(25):
     print(f'''
     [MeasureBand{i}]
@@ -13,7 +13,7 @@ for i in range(25):
         BandIdx={i}
     ''')
 ...
-;#endmacro
+;endmacro
 --> skin.ini
 ...
 [MeasureBand0]
@@ -80,13 +80,13 @@ def read_pyrm_lines(in_lines):
     in_span = False
     for i, raw_line in enumerate(in_lines):
         line = raw_line.strip()
-        if line.lstrip(';').lstrip() == "#macro":
+        if line == ";macro":
             if in_span:
                 raise Exception('Macros cannot be nested.')
             in_span = True
             gen_span_start = i
         elif in_span:
-            if line.lstrip(';').lstrip() == "#endmacro":
+            if line == ";endmacro":
                 in_span = False
                 out_lines.append(Macro(in_lines[gen_span_start + 1:i]))
         else:
@@ -125,14 +125,14 @@ if __name__ == '__main__':
         exit(1)
 
     print(r"""
-                                        _   
-                                       | |  
- _ __  _   _ _ __ _ __ ___   ___  _ __ | |_ 
+                                        _
+                                       | |
+ _ __  _   _ _ __ _ __ ___   ___  _ __ | |_
 | '_ \| | | | '__| '_ ` _ \ / _ \| '_ \| __|
-| |_) | |_| | |  | | | | | | (_) | | | | |_ 
+| |_) | |_| | |  | | | | | | (_) | | | | |_
 | .__/ \__, |_|  |_| |_| |_|\___/|_| |_|\__|
-| |     __/ |                               
-|_|    |___/                                
+| |     __/ |
+|_|    |___/
 """[1:])
 
     print("Working in " + str(skin_dir))

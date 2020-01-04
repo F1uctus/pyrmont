@@ -1,6 +1,6 @@
 # pyrmont
-## Tool for Rainmeter skins code generation.
-Uses embedded Python script that writes
+## Tool for Rainmeter skins code generation
+Uses Python script embedded to `.ini` file that writes
 skin contents with `print()` function.
 
 ### Launching
@@ -9,12 +9,12 @@ skin contents with `print()` function.
 This will automatically generate `<filename>.ini`
 skins from all `<filename>.pyrm` files found. 
 
-### Example:
+### Examples
 
 skin.pyrm (input):
 ```
 ...
-;#macro
+;macro
 for i in range(25):
     print(f'''
     [MeasureBand{i}]
@@ -24,7 +24,7 @@ for i in range(25):
         Type=Band
         BandIdx={i}
     ''')
-;#endmacro
+;endmacro
 ...
 ```
 
@@ -44,5 +44,19 @@ skin.ini (output):
     Parent=MeasureAudio
     Type=Band
     BandIdx=1
-... (25 times as above)
+
+[MeasureBand2]
+    Measure=Plugin
+    Plugin=AudioLevel
+    Parent=MeasureAudio
+    Type=Band
+    BandIdx=2
+
+[MeasureBand3]
+    Measure=Plugin
+    Plugin=AudioLevel
+    Parent=MeasureAudio
+    Type=Band
+    BandIdx=3
+...and so on until MeasureBand24
 ```
