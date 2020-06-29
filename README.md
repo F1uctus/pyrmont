@@ -25,17 +25,17 @@ for visualizer with just couple of lines:
 
 ```ini
 ...
-;macro
-for i in range(25):
-    e(f'''
-    [MeasureBand{i}]
-        Measure=Plugin
-        Plugin=AudioLevel
-        Parent=MeasureAudio
-        Type=Band
-        BandIdx={i}
-    ''')
-;endmacro
+[[
+    for i in range(25):
+        e(f'''
+        [MeasureBand{i}]
+            Measure=Plugin
+            Plugin=AudioLevel
+            Parent=MeasureAudio
+            Type=Band
+            BandIdx={i}
+        ''')
+]]
 ...
 ```
 
