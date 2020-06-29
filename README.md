@@ -1,44 +1,25 @@
-# pyrmont
+<h1 align="center">pyrmont</h1>
+<h3 align="center">Simple static skins generator for Rainmeter ✒️ 🌧️</h3>
 
-## Pico tool for Rainmeter skins code generation
-
-Uses Python script embedded to `.ini` file that writes
-skin contents with `print()` function.
-
-Also, you can import your custom modules from Python files
-that are neighbour to `.pyrm` file via the `import_module()` function.
-for example, you have Rainmeter config path with structure:
-
-```plain-text
-- SkinPackRootDir
-  - Skin1
-    - 1.ini
-    - 1.pyrm
-    - scraper.py
-```
-
-...and, you can write this in your `1.pyrm` file:
-
-```py
-scraper = import_module('scraper')
-data = scraper.process()
-print(f'''
-    [MeterX]
-        Meter=String
-        Text={data}
-    ''')
-```
+This tool uses Python scripts embedded into Rainmeter config file.<br>
+The `.pyrm` extension is used for source code, resulting `.ini` file
+with the same name will appear near the source file after generation.
 
 ### Launching
 
-`python pyrmont.py <path to Rainmeter skin directory>`
+`python pyrmont.py <path to Rainmeter suite directory>`
 
-This will automatically generate `<filename>.ini`
-skins from all `<filename>.pyrm` files found.
+This will generate `<filename>.ini` config from every `<filename>.pyrm` file found.
 
 Add `--silent` argument if you don't want pyrmont to produce unnecessary output.
 
-### Examples
+### Features
+
+To embed any code into resulting `.ini` config, use the built-in `e(args)` function,
+where `args` is any amount of `str`s.
+
+There is a neat example showing how you can generate sound measures
+for visualizer with just couple of lines:
 
 `skin.pyrm` (input):
 
@@ -46,7 +27,7 @@ Add `--silent` argument if you don't want pyrmont to produce unnecessary output.
 ...
 ;macro
 for i in range(25):
-    print(f'''
+    e(f'''
     [MeasureBand{i}]
         Measure=Plugin
         Plugin=AudioLevel
@@ -83,11 +64,36 @@ for i in range(25):
     Type=Band
     BandIdx=2
 
-[MeasureBand3]
-    Measure=Plugin
-    Plugin=AudioLevel
-    Parent=MeasureAudio
-    Type=Band
-    BandIdx=3
 ...and so on until MeasureBand24
 ```
+
+Also, you can import your custom modules from Python files
+that are located near to `.pyrm` file via the `require(file_name)` function.
+
+For example, if you have Rainmeter config path with structure:
+
+```plain-text
+- SuiteDir
+  - Skin1
+    - 1.ini
+    - 1.pyrm
+    - scraper.py
+```
+
+...you can do this in your `1.pyrm` file:
+
+```py
+scraper = require('scraper')
+data = scraper.process()
+e(f'''
+[MeterData]
+    Meter=String
+    Text={data}
+''')
+```
+
+`import` for any module installed in your system's Python distribution is supported too.
+
+### Contributions
+... are welcome! Feel free to report issues and submit pull requests if you want to.<br>
+And give this project a 🌟 if you like it!
